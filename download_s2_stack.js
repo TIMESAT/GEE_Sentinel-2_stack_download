@@ -95,6 +95,8 @@ function buildVICollection(viName, aoi, fromDate, toDate) {
 
 /* ============ Run ============ */
 Map.addLayer(point, {color: 'yellow'}, 'AOI');
+Map.centerObject(point, 12); // zoom level 12, adjust as needed
+Map.setOptions('SATELLITE');
 
 viList.forEach(function(viName) {
   var viCol = buildVICollection(viName, point, startDate, endDate);
