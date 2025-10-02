@@ -86,6 +86,7 @@ function buildVICollection(viName, aoi, fromDate, toDate) {
   var col = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
               .filterBounds(aoi)
               .filterDate(fromDate, toDate)
+              .filter(ee.Filter.lte('CLOUDY_PIXEL_PERCENTAGE', 75))
               .map(maskS2_SCL)
               .map(function (img) { return computeVI(img, viName); })
               .sort('system:time_start');
